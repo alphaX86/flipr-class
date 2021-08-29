@@ -1,11 +1,14 @@
 import React from "react";
+import { Pane, Heading } from "evergreen-ui";
 
-class Header extends React.Component {
-    render() {
-        return (
-            <p>This is a header</p>
-        )
-    }
+function Header() {
+    return (
+        <Pane alignContent = "center" background="tint1" paddingTop={0}>
+            <Heading size={1200}>
+                Flipr Classroom
+            </Heading>
+        </Pane>
+    )
 }
 
 export default Header;

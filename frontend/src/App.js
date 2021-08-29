@@ -1,37 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
-import { 
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link } from 'react-router-dom';
+import { Pane, Button, ManualIcon } from "evergreen-ui";
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import WelcomeScreen from './pages/welcome';
 import StudentLogin from './pages/Studentlogin';
 import TeacherLogin from './pages/Teacherlogin';
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <div>
-        <nav>
-          <Link to="/student-login">Student</Link> <br/>
-          <Link to="/teacher-login">Teacher</Link>
-        </nav>
-      </div>
-    <Switch>
-      <Route path="/student-login">
-        <StudentLogin />
-      </Route>
-
-      <Route path="/teacher-login">
-        <TeacherLogin />
-      </Route>
-    </Switch>
-    <Footer />
-    </Router>
+    <div className="App">
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={WelcomeScreen} />
+          <Route exact path="/student" component={StudentLogin} />
+          <Route exact path="/teacher" component={TeacherLogin} />
+        </Switch>
+        <Footer />
+      </Router>
+    </div>
   );
 }
 
