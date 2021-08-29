@@ -1,5 +1,4 @@
 import React from "react";
-
 class StudentLogin extends React.Component {
     render() {
         return (
