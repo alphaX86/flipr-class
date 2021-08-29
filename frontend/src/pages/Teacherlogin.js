@@ -16,7 +16,7 @@ function LogInForm(props) {
                     <TextInputField
                         label="Username"
                         required
-                        placeholder="mongodb@example.com"
+                        placeholder="teacher321"
                         onChange={(e) => props.setEmail(e.target.value)}
                         value={props.email}
                     />

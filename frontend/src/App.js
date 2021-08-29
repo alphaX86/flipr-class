@@ -19,7 +19,6 @@ function App() {
           <Route exact path="/student" component={StudentLogin} />
           <Route exact path="/teacher" component={TeacherLogin} />
         </Switch>
-        <Footer />
       </Router>
     </div>
   );
