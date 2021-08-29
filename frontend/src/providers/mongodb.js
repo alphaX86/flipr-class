@@ -10,7 +10,7 @@ const MongoDB = ({ children }) => {
 
     useEffect(() => {
         if (user !== null) {
-            const realmService = user.mongoClient("mongodb-atlas")
+            const realmService = user.mongoClient(process.env.REACT_APP_SERVICE)
             setDb(realmService.db(process.env.REACT_APP_DB_NAME))
         }
     }, [user])
