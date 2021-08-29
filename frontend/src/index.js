@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import MongoDB from './providers/mongodb';
+import RealmApp from './providers/realm';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RealmApp>
+      <MongoDB>
+        <App />
+      </MongoDB>
+    </RealmApp>
   </React.StrictMode>,
   document.getElementById('root')
 );

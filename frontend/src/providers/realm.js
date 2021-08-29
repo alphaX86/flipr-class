@@ -5,7 +5,7 @@ import React, { useContext, useState } from "react"
 const RealmAppContext = React.createContext(null)
 
 const RealmApp = ({ children }) => {
-    const REALM_APP_ID = process.env.REALM_APP_NAME
+    const REALM_APP_ID = process.env.REACT_APP_REALM_NAME
     const app = new RealmWeb.App({ id: REALM_APP_ID })
     const [user, setUser] = useState(null)
 
