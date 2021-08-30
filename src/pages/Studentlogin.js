@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Heading, Pane, Table, TextInputField } from "evergreen-ui";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { useMongoDB } from "../providers/mongodb";
 import { useRealmApp } from "../providers/realm";
@@ -16,7 +16,7 @@ function LogInForm(props) {
                     <TextInputField
                         label="Username"
                         required
-                        placeholder="student41x"
+                        placeholder="xyz@zyx.com"
                         onChange={(e) => props.setEmail(e.target.value)}
                         value={props.email}
                     />
@@ -44,7 +44,7 @@ function LogInForm(props) {
     )
 }
 
-function studentList(props) {
+function StudentList(props) {
     return (
         <Pane alignItems="center" justifyContent="center" display="flex" paddingTop={50}>
             <Pane width="50%" padding={16} background="green300" borderRadius={3} elevation={4}>
@@ -91,8 +91,8 @@ function StudentLogin() {
     useEffect(() => {
         async function wrapstudentQuery() {
             if (user && db) {
-                const authoredstudents = await db.collection("students").find()
-                setstudents(authoredstudents)
+                const authoredStudents = await db.collection("students").find()
+                setstudents(authoredStudents)
             }
         }
         wrapstudentQuery()
@@ -103,7 +103,7 @@ function StudentLogin() {
     }
 
     return user && db && user.state === "active" ? (
-        <studentList students={students} user={user} logOut={logOut} />
+        <Redirect to="/dashboard-student" />
     ) : (
         <LogInForm
             email={email}

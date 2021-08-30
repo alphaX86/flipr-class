@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Button, Heading, Pane, Table, TextInputField } from "evergreen-ui";
 
 import { useMongoDB } from "../providers/mongodb";
@@ -44,7 +44,7 @@ function LogInForm(props) {
     )
 }
 
-function teacherList(props) {
+function TeacherList(props) {
     return (
         <Pane alignItems="center" justifyContent="center" display="flex" paddingTop={50}>
             <Pane width="50%" padding={16} background="red300" borderRadius={3} elevation={4}>
@@ -91,8 +91,8 @@ function TeacherLogin() {
     useEffect(() => {
         async function wrapteacherQuery() {
             if (user && db) {
-                const authoredteachers = await db.collection("teachers").find()
-                setteachers(authoredteachers)
+                const authoredTeachers = await db.collection("teachers").find()
+                setteachers(authoredTeachers)
             }
         }
         wrapteacherQuery()
@@ -103,7 +103,7 @@ function TeacherLogin() {
     }
 
     return user && db && user.state === "active" ? (
-        <teacherList teachers={teachers} user={user} logOut={logOut} />
+        <Redirect to="/dashboard-teacher" />
     ) : (
         <LogInForm
             email={email}
