@@ -73,7 +73,7 @@ async function GoogleO()
 {
 // The redirect URI should be on the same domain as this app and
 // specified in the auth provider configuration.
-const redirectUri = "https://stitch.mongodb.com/api/client/v2.0/auth/callback";
+const redirectUri = "http://localhost:3000/redirect";
 const credentials = Realm.Credentials.google(redirectUri);
 // Calling logIn() opens a Google authentication screen in a new window.
 app.logIn(credentials).then(user => {

@@ -7,7 +7,7 @@ export default class MenuT extends Component {
             <div>
   <aside className="main-sidebar sidebar-dark-primary elevation-4">
     {/* Brand Logo */}
-    <a href="index3.html" className="brand-link">
+    <a href="/dashboard-teacher" className="brand-link">
       <img src="dist/img/logo.PNG"  className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
       <span className="brand-text font-weight-light">Virtual Classroom</span>
       

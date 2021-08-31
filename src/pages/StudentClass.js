@@ -1,7 +1,7 @@
 import '../App.css';
 import HeaderS from '../components/HeaderS';
 import MenuS from '../components/MenuS';
-import DashboardS from '../components/DashboardT';
+import ClassX from '../components/Class';
 import FooterS from '../components/FooterS';
 
 function StudentClass() {
@@ -9,7 +9,7 @@ function StudentClass() {
     <div class="wrapper">
       <HeaderS />
       <MenuS/>
-      <DashboardS/>
+      <ClassX/>
       <FooterS/>
     </div>
   );
