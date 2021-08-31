@@ -1,84 +1,94 @@
 import React, { useEffect, useState } from "react";
-import { Button, Heading, Pane, Table, TextInputField } from "evergreen-ui";
+import "../css/login.css";
 import { Link, Redirect } from "react-router-dom";
+import { useSpring, animated } from "react-spring";
+import { TextInputField, Button } from "evergreen-ui";
+import Header from "../components/Header";
+
 
 import { useMongoDB } from "../providers/mongodb";
 import { useRealmApp } from "../providers/realm";
 
-function LogInForm(props) {
+import * as Realm from "realm-web";
+
+const app = new Realm.App(process.env.REACT_APP_REALM_NAME);
+const client_id = process.envREACT_APP_GOOGLE;
+
+function Form(props) {
+
+    const [registrationFormStatus, setRegistartionFormStatus] = useState(false);
+    const loginProps = useSpring({ 
+      left: registrationFormStatus ? -500 : 0, // Login form sliding positions
+    });
+  
+    const loginBtnProps = useSpring({
+      borderBottom: registrationFormStatus 
+        ? "solid 0px transparent"
+        : "solid 2px #1059FF",  //Animate bottom border of login button
+    });
+  
+    function loginClicked() {
+      setRegistartionFormStatus(false);
+    }
+  
     return (
-        <Pane alignItems="center" justifyContent="center" display="flex" paddingTop={50}>
-            <Pane width="50%" padding={16} background="green300" borderRadius={3} elevation={4}>
-                <Heading size={800} marginTop="10" marginBottom="10">
-                    Welcome back!
-                </Heading>
-                <Pane>
-                    <TextInputField
+  
+      <div>
+          <Header />
+      <div className="login-register-wrapper">
+        <div className="nav-buttons">
+          <animated.button
+            style={loginBtnProps}
+          >
+            Student Login
+          </animated.button>
+        </div>
+        <div className="form-group">
+            <TextInputField
                         label="Username"
                         required
                         placeholder="xyz@zyx.com"
                         onChange={(e) => props.setEmail(e.target.value)}
                         value={props.email}
-                    />
-                </Pane>
-                <Pane>
-                    <TextInputField
+            />
+            <TextInputField
                         label="Password"
                         required
                         placeholder="**********"
                         type="password"
                         onChange={(e) => props.setPassword(e.target.value)}
                         value={props.password}
-                    />
-                </Pane>
-                <Button appearance="primary" onClick={props.handleLogIn}>
+            />
+            <Button appearance="primary" onClick={props.handleLogIn}>
                     Log in
-                </Button>
-                <Link to="/">
-                    <Button>
-                        Go back
-                    </Button>
-                </Link>
-            </Pane>
-        </Pane>
-    )
+            </Button>
+            <Button appearance="primary" intent="danger" onClick={GoogleO}>
+                    Login via Google
+            </Button>
+        </div>
+      </div>
+      </div>
+    );
 }
 
-function StudentList(props) {
-    return (
-        <Pane alignItems="center" justifyContent="center" display="flex" paddingTop={50}>
-            <Pane width="50%" padding={16} background="green300" borderRadius={3} elevation={4}>
-                <Table>
-                    <Table.Head>
-                        <Table.TextHeaderCell>Title</Table.TextHeaderCell>
-                        <Table.TextHeaderCell>RegNo</Table.TextHeaderCell>
-                        <Table.TextHeaderCell>Area</Table.TextHeaderCell>
-                        <Table.TextHeaderCell>UserName</Table.TextHeaderCell>
-                    </Table.Head>
-                    <Table.Body height={240}>
-                        {props.students.map((student) => (
-                            <Table.Row key={student._id}>
-                                <Table.TextCell>{student.name}</Table.TextCell>
-                                <Table.TextCell>{student.regno}</Table.TextCell>
-                                <Table.TextCell>{student.city}</Table.TextCell>
-                                <Table.TextCell isNumber>{student.username}</Table.TextCell>
-                            </Table.Row>
-                        ))}
-                    </Table.Body>
-                </Table>
-
-                <Button
-                    height={50}
-                    marginRight={16}
-                    appearance="primary"
-                    intent="danger"
-                    onClick={props.logOut}
-                >
-                    Log Out
-                </Button>
-            </Pane>
-        </Pane>
-    )
+async function GoogleO()
+{
+// The redirect URI should be on the same domain as this app and
+// specified in the auth provider configuration.
+const redirectUri = "https://stitch.mongodb.com/api/client/v2.0/auth/callback";
+const credentials = Realm.Credentials.google(redirectUri);
+// Calling logIn() opens a Google authentication screen in a new window.
+app.logIn(credentials).then(user => {
+  // The logIn() promise will not resolve until you call `handleAuthRedirect()`
+  // from the new window after the user has successfully authenticated.
+  console.log(`Logged in with id: ${user.id}`);
+})
+// When the user is redirected back to your app, handle the redirect to
+// save the user's access token and close the redirect window. This
+// returns focus to the original application window and automatically
+// logs the user in.
+Realm.handleAuthRedirect();
+<Redirect to="/dashboard-teacher" />
 }
 
 function StudentLogin() {
@@ -105,7 +115,7 @@ function StudentLogin() {
     return user && db && user.state === "active" ? (
         <Redirect to="/dashboard-student" />
     ) : (
-        <LogInForm
+        <Form
             email={email}
             setEmail={setEmail}
             password={password}
