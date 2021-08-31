@@ -63,7 +63,7 @@ function TestT(){
             <ol className="breadcrumb float-sm-right">
               <li className="breadcrumb-item">
                   <Link to="/dashboard-student">Home</Link></li>
-              <li className="breadcrumb-item active">Dashboard v1</li>
+              <li className="breadcrumb-item active">ClassRoom</li>
             </ol>
           </div>{/* /.col */}
         </div>{/* /.row */}

@@ -27,29 +27,29 @@ export default class MenuS extends Component {
      
           
           <li className="nav-item">
-            <Link to="/student-class">
+            <a href="/student-class">
               <i className="nav-icon far fa-calendar-alt" />
               <p>
                 Classes
                 <span className="badge badge-info right"></span>
               </p>
-            </Link>
+            </a>
           </li>
           <li className="nav-item">
-            <Link to="/student-test">
+            <a href="/student-test">
               <i className="nav-icon far fa-image" />
               <p>
                 Tests
               </p>
-            </Link>
+            </a>
           </li>
           <li className="nav-item">
-            <Link to="/student-assess">
+            <a href="/student-assess">
               <i className="nav-icon fas fa-columns" />
               <p>
                 Assignments
               </p>
-            </Link>
+            </a>
           </li>
           
         

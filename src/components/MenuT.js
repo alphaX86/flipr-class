@@ -27,29 +27,29 @@ export default class MenuT extends Component {
      
           
           <li className="nav-item">
-            <Link to="/teacher-class">
+            <a href="/teacher-class">
               <i className="nav-icon far fa-calendar-alt" />
               <p>
                 Classes
                 <span className="badge badge-info right"></span>
               </p>
-            </Link>
+            </a>
           </li>
           <li className="nav-item">
-            <Link to="/teacher-test">
+            <a href="/teacher-test">
               <i className="nav-icon far fa-image" />
               <p>
                 Tests
               </p>
-            </Link>
+            </a>
           </li>
           <li className="nav-item">
-            <Link to="/teacher-assess">
+            <a href="/teacher-assess">
               <i className="nav-icon fas fa-columns" />
               <p>
                 Assignments
               </p>
-            </Link>
+            </a>
           </li>
           
         
