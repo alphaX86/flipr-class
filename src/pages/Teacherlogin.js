@@ -60,9 +60,6 @@ function Form(props) {
             <Button appearance="primary" onClick={props.handleLogIn}>
                     Log in
             </Button>
-            <Button appearance="primary" intent="danger" onClick={GoogleO}>
-                    Login via Google
-            </Button>
         </div>
       </div>
       </div>
