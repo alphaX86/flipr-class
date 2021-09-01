@@ -1,6 +1,21 @@
-# Getting Started with Create React App
+# Getting Started with Flipr Class
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), MongoDB Atlas for Database and MongoDB Realm for Email Auth. 
+
+## Note
+Use these credentials to log in into the app. Don't use Google for now
+
+Student: 
+student123@flipr.com 
+admin123 
+
+Teacher:
+teacher123@flipr.com 
+admin123
+
+Project deployed via Heroku
+
+See here: https://flipr-class.herokuapp.com 
 
 ## Available Scripts
 
